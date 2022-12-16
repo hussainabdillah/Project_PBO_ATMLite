@@ -110,7 +110,7 @@ public class Login implements ActionListener {
         panel.add(exit);
 
         //add image to the panel
-        URL imageTest = Login.class.getResource("Vector.png");
+        URL imageTest = Login.class.getResource("VectorBlue.png");
         ImageIcon imageIcon = new ImageIcon(imageTest);
         JLabel label3 = new JLabel(imageIcon);
         label3.setBounds(0, 415, 500, 50);
