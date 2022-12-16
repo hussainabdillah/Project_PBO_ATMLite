@@ -6,5 +6,7 @@ public class Atm {
     }
 
     public void setVisible(boolean b) {
+
+
     }
 }

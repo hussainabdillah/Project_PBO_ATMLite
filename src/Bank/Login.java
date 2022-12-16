@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import Bank.Atm;
 
 public class Login extends javax.swing.JFrame {
 
@@ -19,29 +20,10 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        ENTERButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                password = passwordField1.getText();
-                if (password.equals("1234")) {
-                    JOptionPane.showMessageDialog(null, "Selamat Datang di Bank ABC");
-                    new Atm().setVisible(true);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "PIN yang anda masukan salah");
-                }
-            }
-        });
-        CANCELButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
     }
 
     private void initComponents(){
-        salamLabel  = new javax.swing.JLabel();
+        salamLabel  = new JLabel();
         bankLabel = new JLabel();
         masukanPinLabel = new JLabel();
         endLabel = new JLabel();
