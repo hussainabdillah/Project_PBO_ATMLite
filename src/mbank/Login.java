@@ -25,8 +25,6 @@ public class Login implements ActionListener {
         panel.setLayout(null);
         panel.setBackground(new Color(0xFFFFFF));
 
-
-
         JLabel label = new JLabel("BANK MU");
         label.setBounds(168, 27, 300, 50);
         label.setFont(new Font("Inter", Font.BOLD, 48 ));
@@ -39,8 +37,8 @@ public class Login implements ActionListener {
         label1.setForeground(new Color(0xEC5E2C));
         panel.add(label1);
 
-        JLabel label2 = new JLabel("MASUKKAN PIN ANDA");
-        label2.setBounds(159, 140, 300, 25);
+        JLabel label2 = new JLabel("MASUKKAN USER  ID DAN MPIN ANDA");
+        label2.setBounds(98, 140, 300, 25);
         label2.setFont(new Font("Arial", Font.PLAIN, 15 ));
         label2.setForeground(new Color(0x0A5A67));
         panel.add(label2);
@@ -74,7 +72,6 @@ public class Login implements ActionListener {
         datasalah.setVisible(false);
         panel.add(datasalah);
 
-
         JButton login = new JButton("LOGIN");
         login.setBounds(70, 278, 200, 40);
         login.setForeground(new Color(0xFFFFFF));
@@ -86,7 +83,9 @@ public class Login implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (textField.getText().equals("admin") && passwordField.getText().equals("admin")) {
                     datasalah.setVisible(false);
-                    JOptionPane.showMessageDialog(null, "Login Berhasil");
+                    frame.dispose();
+                    new Bank();
+//                    JOptionPane.showMessageDialog(null, "Login Berhasil");
 
                 }
                 else {
