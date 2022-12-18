@@ -12,11 +12,11 @@ public class Bank {
     }
 
     private static JLabel label;
-    private double saldonasabah;
+    private double saldonasabah = 1000000;
     private double hasil;
 
     public Bank() {
-        JFrame frame = new JFrame("Bank");
+        JFrame frame = new JFrame("Homepage");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -63,7 +63,77 @@ public class Bank {
         saldo.setForeground(new Color(0x000000));
         panel.add(saldo);
 
+        JButton cekSaldo = new JButton("CEK SALDO");
+        cekSaldo.setBounds(50, 140, 150, 40);
+        cekSaldo.setFont(new Font("Inter", Font.BOLD,  15 ));
+        cekSaldo.setForeground(new Color(0xFFFFFF));
+        cekSaldo.setBackground(new Color(0x1AC2D0));
+        cekSaldo.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        cekSaldo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Saldo anda sebesar Rp " + String.valueOf(String.format(" %,.2f ",saldonasabah)));
+            }
+        });
+        panel.add(cekSaldo);
 
+        JButton informasi = new JButton("INFORMASI");
+        informasi.setBounds(285, 140, 150, 40);
+        informasi.setFont(new Font("Inter", Font.BOLD,  15 ));
+        informasi.setForeground(new Color(0xFFFFFF));
+        informasi.setBackground(new Color(0x1AC2D0));
+        informasi.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        panel.add(informasi);
+
+        JButton isiSaldo = new JButton("ISI SALDO");
+        isiSaldo.setBounds(50, 200, 150, 40);
+        isiSaldo.setFont(new Font("Inter", Font.BOLD,  15 ));
+        isiSaldo.setForeground(new Color(0xFFFFFF));
+        isiSaldo.setBackground(new Color(0x1AC2D0));
+        isiSaldo.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        panel.add(isiSaldo);
+
+        JButton tarikSaldo = new JButton("TARIK SALDO");
+        tarikSaldo.setBounds(285, 200, 150, 40);
+        tarikSaldo.setFont(new Font("Inter", Font.BOLD,  15 ));
+        tarikSaldo.setForeground(new Color(0xFFFFFF));
+        tarikSaldo.setBackground(new Color(0x1AC2D0));
+        tarikSaldo.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        panel.add(tarikSaldo);
+
+        JButton transfer = new JButton("TRANSFER");
+        transfer.setBounds(50, 260, 150, 40);
+        transfer.setFont(new Font("Inter", Font.BOLD,  15 ));
+        transfer.setForeground(new Color(0xFFFFFF));
+        transfer.setBackground(new Color(0x1AC2D0));
+        transfer.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        panel.add(transfer);
+
+        JButton pembayaran = new JButton("PEMBAYARAN");
+        pembayaran.setBounds(285, 260, 150, 40);
+        pembayaran.setFont(new Font("Inter", Font.BOLD,  15 ));
+        pembayaran.setForeground(new Color(0xFFFFFF));
+        pembayaran.setBackground(new Color(0x1AC2D0));
+        pembayaran.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        panel.add(pembayaran);
+
+        JButton logout = new JButton("LOGOUT");
+        logout.setBounds(168, 320, 150, 40);
+        logout.setFont(new Font("Inter", Font.BOLD,  15 ));
+        logout.setForeground(new Color(0xFFFFFF));
+        logout.setBackground(new Color(0xEC5E2C));
+        logout.setBorder(BorderFactory.createLineBorder(new Color(0xEC5E2C)));
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new Login();
+            }
+        });
+        panel.add(logout);
+
+
+        
 
 
         URL vectorBawah = Bank.class.getResource("VectorOrange.png");
