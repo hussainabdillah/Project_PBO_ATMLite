@@ -83,6 +83,13 @@ public class Bank {
         informasi.setForeground(new Color(0xFFFFFF));
         informasi.setBackground(new Color(0x1AC2D0));
         informasi.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        informasi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Informasi informasi = new Informasi();
+                frame.dispose();
+            }
+        });
         panel.add(informasi);
 
         JButton isiSaldo = new JButton("ISI SALDO");
@@ -91,6 +98,13 @@ public class Bank {
         isiSaldo.setForeground(new Color(0xFFFFFF));
         isiSaldo.setBackground(new Color(0x1AC2D0));
         isiSaldo.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        isiSaldo.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IsiSaldo isiSaldo = new IsiSaldo();
+                frame.dispose();
+            }
+        });
         panel.add(isiSaldo);
 
         JButton tarikSaldo = new JButton("TARIK SALDO");
@@ -107,6 +121,13 @@ public class Bank {
         transfer.setForeground(new Color(0xFFFFFF));
         transfer.setBackground(new Color(0x1AC2D0));
         transfer.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        transfer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Transfer transfer = new Transfer();
+                frame.dispose();
+            }
+        });
         panel.add(transfer);
 
         JButton pembayaran = new JButton("PEMBAYARAN");
