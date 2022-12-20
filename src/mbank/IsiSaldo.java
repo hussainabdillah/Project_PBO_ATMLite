@@ -6,12 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
+
 public class IsiSaldo {
     public static void main(String[] args) {
         IsiSaldo isiSaldo = new IsiSaldo();
     }
 
     private static JLabel label;
+    private double saldonasabah = 1000000;
+    private double hasil;
 
     public IsiSaldo() {
         JFrame frame = new JFrame("Isi Saldo");
@@ -88,6 +91,7 @@ public class IsiSaldo {
         comboBox.addItem("Rekening Kredit");
         panel.add(comboBox);
 
+
         JLabel labelMetodePemb = new JLabel("METODE PEMBAYARAN");
         labelMetodePemb.setBounds(30, 170, 250, 50);
         labelMetodePemb.setFont(new Font("Inter", Font.PLAIN, 14 ));
@@ -105,6 +109,7 @@ public class IsiSaldo {
         comboBox2.addItem("GoPay");
         comboBox2.addItem("LinkAja");
         panel.add(comboBox2);
+        String valueMetode = comboBox.getSelectedItem().toString();
 
         JLabel labelNominal = new JLabel("NOMINAL");
         labelNominal.setBounds(30, 240, 250, 50);
@@ -112,12 +117,12 @@ public class IsiSaldo {
         labelNominal.setForeground(new Color(0x000000));
         panel.add(labelNominal);
 
-        JTextField textField = new JTextField();
-        textField.setBounds(30, 280, 425, 30);
-        textField.setBackground(new Color(0xFFFFFF));
-        textField.setForeground(new Color(0x000000));
-        textField.setFont(new Font("Inter", Font.PLAIN, 14));
-        panel.add(textField);
+        JTextField nominalTextField = new JTextField();
+        nominalTextField.setBounds(30, 280, 425, 30);
+        nominalTextField.setBackground(new Color(0xFFFFFF));
+        nominalTextField.setForeground(new Color(0x000000));
+        nominalTextField.setFont(new Font("Inter", Font.PLAIN, 14));
+        panel.add(nominalTextField);
 
         JButton isiButton = new JButton("BAYAR");
         isiButton.setBounds(168, 340, 150, 40);
@@ -125,6 +130,15 @@ public class IsiSaldo {
         isiButton.setForeground(new Color(0xFFFFFF));
         isiButton.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
         isiButton.setFont(new Font("Inter", Font.BOLD, 15));
+        isiButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nominal = nominalTextField.getText();
+                hasil = Double.parseDouble(nominal);
+                saldonasabah = saldonasabah + hasil;
+                JOptionPane.showMessageDialog(null, "Pengisian Saldo anda lewat metode "  + valueMetode + " sekarang adalah " + saldonasabah);
+            }
+        });
 //        isiButton.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
@@ -133,7 +147,9 @@ public class IsiSaldo {
 //            }
 //        });
         panel.add(isiButton);
-
+        //    private void isiButtonActionPerformed(java.awt.event.ActionEvent evt) {
+//            hasil =  saldonasabah + Integer.parseInt(textField.getText());
+//        }
 
         frame.setVisible(true);
     }
