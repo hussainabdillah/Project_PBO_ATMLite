@@ -136,7 +136,7 @@ public class IsiSaldo {
                 String nominal = nominalTextField.getText();
                 hasil = Double.parseDouble(nominal);
                 saldonasabah = saldonasabah + hasil;
-                JOptionPane.showMessageDialog(null, "Pengisian Saldo anda lewat metode "  + valueMetode + " sekarang adalah " + saldonasabah);
+                JOptionPane.showMessageDialog(null, "Pengisian Saldo anda melalui metode "  + valueMetode + " sekarang adalah " + saldonasabah);
             }
         });
 //        isiButton.addActionListener(new ActionListener() {
