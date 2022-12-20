@@ -12,9 +12,6 @@ public class TarikSaldo {
     }
 
     private static JLabel label;
-    private double saldonasabah = 1000000;
-    private double hasil;
-
     public TarikSaldo(){
         JFrame frame = new JFrame("Tarik Saldo");
         frame.setSize(500, 500);
@@ -96,11 +93,11 @@ public class TarikSaldo {
         labelNominal.setForeground(new Color(0x000000));
         panel.add(labelNominal);
 
-        JTextField nominalTextField = new JTextField();
-        nominalTextField.setBounds(30, 210, 425, 30);
-        nominalTextField.setFont(new Font("Inter", Font.PLAIN, 14 ));
-        nominalTextField.setForeground(new Color(0x000000));
-        panel.add(nominalTextField);
+        JTextField nominal = new JTextField();
+        nominal.setBounds(30, 210, 425, 30);
+        nominal.setFont(new Font("Inter", Font.PLAIN, 14 ));
+        nominal.setForeground(new Color(0x000000));
+        panel.add(nominal);
 
         JButton tarikButton = new JButton("TARIK");
         tarikButton.setBounds(168, 270, 150, 40);
@@ -108,16 +105,21 @@ public class TarikSaldo {
         tarikButton.setForeground(new Color(0xFFFFFF));
         tarikButton.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
         tarikButton.setFont(new Font("Inter", Font.BOLD, 15));
-        tarikButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String nominal = nominalTextField.getText();
-                hasil = Double.parseDouble(nominal);
-                saldonasabah = saldonasabah - hasil;
-                JOptionPane.showMessageDialog(null, "Anda telah berhasil menarik saldo sebesar Rp. " + nominal + " Saldo anda sekarang adalah Rp. " + String.format(" %,.2f ",saldonasabah));
-            }
-        });
+//        tarikButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                frame.dispose();
+//                new TarikSaldoBerhasil();
+//            }
+//        });
         panel.add(tarikButton);
+
+
+
+
+
+
+
 
 
 
