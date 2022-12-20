@@ -12,6 +12,7 @@ public class TarikSaldo {
     }
 
     private static JLabel label;
+
     public TarikSaldo(){
         JFrame frame = new JFrame("Tarik Saldo");
         frame.setSize(500, 500);
@@ -105,25 +106,19 @@ public class TarikSaldo {
         tarikButton.setForeground(new Color(0xFFFFFF));
         tarikButton.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
         tarikButton.setFont(new Font("Inter", Font.BOLD, 15));
-//        tarikButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.dispose();
-//                new TarikSaldoBerhasil();
-//            }
-//        });
-        panel.add(tarikButton);
+        tarikButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                String nom1 = nominal.getText();
+                hasil = Double.parseDouble(nom1);
+                saldonasabah = saldonasabah - hasil;
+                JOptionPane.showMessageDialog(null, "Anda telah berhasil menarik saldo sebesar "  + valueMetode + " Saldo anda sekarang adalah " + saldonasabah);
+            }
+        )
 
 
 
-
-
-
-
-
-
-
+                                      }
+    panel.add(tarikButton);
 
         frame.setVisible(true);
-    }
-}
+}}
