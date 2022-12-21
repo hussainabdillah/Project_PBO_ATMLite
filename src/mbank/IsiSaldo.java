@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
-import java.util.Objects;
 
 
 public class IsiSaldo {
@@ -90,20 +89,6 @@ public class IsiSaldo {
         comboBox.addItem("Rekening Deposito");
         comboBox.addItem("Rekening Investasi");
         comboBox.addItem("Rekening Kredit");
-        comboBox.addItemListener(e -> {
-            if (Objects.equals(comboBox.getSelectedItem(), "Rekening Tabungan")) {
-                label.setText("Rp. " + saldonasabah);
-            } else if (Objects.equals(comboBox.getSelectedItem(), "Rekening Giro")) {
-                label.setText("Rp. " + saldonasabah);
-            } else if (Objects.equals(comboBox.getSelectedItem(), "Rekening Deposito")) {
-                label.setText("Rp. " + saldonasabah);
-            } else if (Objects.equals(comboBox.getSelectedItem(), "Rekening Investasi")) {
-                label.setText("Rp. " + saldonasabah);
-            } else if (Objects.equals(comboBox.getSelectedItem(), "Rekening Kredit")) {
-                label.setText("Rp. " + saldonasabah);
-            }
-        });
-        String valueRekening = (String) comboBox.getSelectedItem();
         panel.add(comboBox);
 
 
@@ -123,9 +108,8 @@ public class IsiSaldo {
         comboBox2.addItem("DANA");
         comboBox2.addItem("GoPay");
         comboBox2.addItem("LinkAja");
-        String valueMetode = Objects.requireNonNull(comboBox2.getSelectedItem()).toString();
         panel.add(comboBox2);
-
+        String valueMetode = comboBox.getSelectedItem().toString();
 
         JLabel labelNominal = new JLabel("NOMINAL");
         labelNominal.setBounds(30, 240, 250, 50);
@@ -152,8 +136,7 @@ public class IsiSaldo {
                 String nominal = nominalTextField.getText();
                 hasil = Double.parseDouble(nominal);
                 saldonasabah = saldonasabah + hasil;
-                JOptionPane.showMessageDialog(null, "Pengisian Saldo anda untuk " + valueRekening + " melalui metode "  + valueMetode + " telah berhasil " + "Saldo anda saat ini adalah Rp. " + String.format(" %,.2f ",saldonasabah));
-                System.out.println(valueRekening);
+                JOptionPane.showMessageDialog(null, "Pengisian Saldo anda melalui metode "  + valueMetode + " sekarang adalah " + saldonasabah);
             }
         });
 //        isiButton.addActionListener(new ActionListener() {
