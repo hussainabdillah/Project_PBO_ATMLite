@@ -111,6 +111,13 @@ public class Transfer {
     buttonTransfer.setForeground(new Color(0xFFFFFF));
     buttonTransfer.setBackground(new Color(0x1AC2D0));
     buttonTransfer.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+//    buttonTransfer.addActionListener(new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            frame.dispose();
+//
+//        }
+//    });
     panel.add(buttonTransfer);
 
 
