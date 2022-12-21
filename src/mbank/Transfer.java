@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.text.DecimalFormat;
 
 public class Transfer {
     public static void main(String[] args) {
@@ -12,105 +13,123 @@ public class Transfer {
     }
 
     private static JLabel label;
-    public Transfer(){
-    JFrame frame = new JFrame("Transfer");
-    frame.setSize(500, 500);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setLocationRelativeTo(null);
-    frame.setResizable(false);
+    private double saldonasabah = 1000000;
+    private double hasil;
 
-    JPanel panel = new JPanel();
-    frame.add(panel);
-    panel.setLayout(null);
-    panel.setBackground(new Color(0xFFFFFF));
+    public Transfer() {
+        JFrame frame = new JFrame("Transfer");
+        frame.setSize(500, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
-    URL vectorbawah = Login.class.getResource("VectorBlue.png");
-    ImageIcon vector = new ImageIcon(vectorbawah);
-    JLabel label3 = new JLabel(vector);
-    label3.setBounds(0, 415, 500, 50);
-    panel.add(label3);
+        JPanel panel = new JPanel();
+        frame.add(panel);
+        panel.setLayout(null);
+        panel.setBackground(new Color(0xFFFFFF));
 
-    URL logoBank = Login.class.getResource("logomini.png");
-    ImageIcon logo = new ImageIcon(logoBank);
-    JLabel coinlogo = new JLabel(logo);
-    coinlogo.setBounds(-210, -220, 500, 500);
-    panel.add(coinlogo);
+        URL vectorbawah = Login.class.getResource("VectorBlue.png");
+        ImageIcon vector = new ImageIcon(vectorbawah);
+        JLabel label3 = new JLabel(vector);
+        label3.setBounds(0, 415, 500, 50);
+        panel.add(label3);
 
-    JButton backButton = new JButton("BACK");
-    backButton.setBounds(370, 20, 85, 30);
-    backButton.setBackground(new Color(0xEC5E2C));
-    backButton.setForeground(new Color(0xFFFFFF));
-    backButton.setBorder(BorderFactory.createLineBorder(new Color(0xEC5E2C)));
-    backButton.setFont(new Font("Inter", Font.BOLD, 10));
-    backButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            frame.dispose();
-            new Bank();
-        }
-    });
-    panel.add(backButton);
+        URL logoBank = Login.class.getResource("logomini.png");
+        ImageIcon logo = new ImageIcon(logoBank);
+        JLabel coinlogo = new JLabel(logo);
+        coinlogo.setBounds(-210, -220, 500, 500);
+        panel.add(coinlogo);
 
-    JLabel labelBank = new JLabel("BANK");
-    labelBank.setBounds(70, 5, 200, 50);
-    labelBank.setFont(new Font("Inter", Font.BOLD, 25 ));
-    labelBank.setForeground(new Color(0x000000));
-    panel.add(labelBank);
+        JButton backButton = new JButton("BACK");
+        backButton.setBounds(370, 20, 85, 30);
+        backButton.setBackground(new Color(0xEC5E2C));
+        backButton.setForeground(new Color(0xFFFFFF));
+        backButton.setBorder(BorderFactory.createLineBorder(new Color(0xEC5E2C)));
+        backButton.setFont(new Font("Inter", Font.BOLD, 10));
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new Bank();
+            }
+        });
+        panel.add(backButton);
 
-    JLabel labelMU = new JLabel("MU");
-    labelMU.setBounds(145, 5, 200, 50);
-    labelMU.setFont(new Font("Inter", Font.BOLD, 25 ));
-    labelMU.setForeground(new Color(0xEC5E2C));
-    panel.add(labelMU);
+        JLabel labelBank = new JLabel("BANK");
+        labelBank.setBounds(70, 5, 200, 50);
+        labelBank.setFont(new Font("Inter", Font.BOLD, 25));
+        labelBank.setForeground(new Color(0x000000));
+        panel.add(labelBank);
 
-    JLabel  transferLabel = new JLabel( "TRANSFER");
-    transferLabel.setBounds(30, 47, 250, 50);
-    transferLabel.setFont(new Font("Inter", Font.BOLD,  25 ));
-    transferLabel.setForeground(new Color(0x000000));
-    panel.add(transferLabel);
+        JLabel labelMU = new JLabel("MU");
+        labelMU.setBounds(145, 5, 200, 50);
+        labelMU.setFont(new Font("Inter", Font.BOLD, 25));
+        labelMU.setForeground(new Color(0xEC5E2C));
+        panel.add(labelMU);
 
-    JLabel  namaPenerima = new JLabel( "NAMA PENERIMA");
-    namaPenerima.setBounds(30, 100, 250, 50);
-    namaPenerima.setFont(new Font("Inter", Font.PLAIN,  14 ));
-    namaPenerima.setForeground(new Color(0x000000));
-    panel.add(namaPenerima);
+        JLabel transferLabel = new JLabel("TRANSFER");
+        transferLabel.setBounds(30, 47, 250, 50);
+        transferLabel.setFont(new Font("Inter", Font.BOLD, 25));
+        transferLabel.setForeground(new Color(0x000000));
+        panel.add(transferLabel);
 
-    JTextField namaPenerimaField = new JTextField();
-    namaPenerimaField.setBounds(30, 140, 427, 30);
-    namaPenerimaField.setFont(new Font("Roboto", Font.PLAIN,  14 ));
-    namaPenerimaField.setForeground(new Color(0x000000));
-    panel.add(namaPenerimaField);
+        JLabel namaPenerima = new JLabel("NAMA PENERIMA");
+        namaPenerima.setBounds(30, 100, 250, 50);
+        namaPenerima.setFont(new Font("Inter", Font.PLAIN, 14));
+        namaPenerima.setForeground(new Color(0x000000));
+        panel.add(namaPenerima);
 
-    JLabel  noRekTujuan = new JLabel( "REKENING TUJUAN");
-    noRekTujuan.setBounds(30, 170, 250, 50);
-    noRekTujuan.setFont(new Font("Inter", Font.PLAIN,  14 ));
-    noRekTujuan.setForeground(new Color(0x000000));
-    panel.add(noRekTujuan);
+        JTextField namaPenerimaField = new JTextField();
+        namaPenerimaField.setBounds(30, 140, 427, 30);
+        namaPenerimaField.setFont(new Font("Roboto", Font.PLAIN, 14));
+        namaPenerimaField.setForeground(new Color(0x000000));
+        panel.add(namaPenerimaField);
 
-    JTextField noRekTujuanField = new JTextField();
-    noRekTujuanField.setBounds(30, 210, 427, 30);
-    noRekTujuanField.setFont(new Font("Roboto", Font.PLAIN,  14 ));
-    noRekTujuanField.setForeground(new Color(0x000000));
-    panel.add(noRekTujuanField);
+        JLabel noRekTujuan = new JLabel("REKENING TUJUAN");
+        noRekTujuan.setBounds(30, 170, 250, 50);
+        noRekTujuan.setFont(new Font("Inter", Font.PLAIN, 14));
+        noRekTujuan.setForeground(new Color(0x000000));
+        panel.add(noRekTujuan);
 
-    JLabel  nominal = new JLabel( "NOMINAL");
-    nominal.setBounds(30, 240, 250, 50);
-    nominal.setFont(new Font("Inter", Font.PLAIN,  14 ));
-    nominal.setForeground(new Color(0x000000));
-    panel.add(nominal);
+//coba
+        JComboBox comboTrans = new JComboBox();
+        comboTrans.setBounds(30, 210, 425, 30);
+        comboTrans.setBackground(new Color(0xFFFFFF));
+        comboTrans.setForeground(new Color(0x000000));
+        comboTrans.setFont(new Font("Inter", Font.ITALIC, 14));
+        comboTrans.addItem("Antar Bank");
+        comboTrans.addItem("Antar Rekening");
+        panel.add(comboTrans);
+        String nomTrans = comboTrans.getSelectedItem().toString();
 
-    JTextField nominalField = new JTextField();
-    nominalField.setBounds(30, 280, 427, 30);
-    nominalField.setFont(new Font("Roboto", Font.PLAIN,  14 ));
-    nominalField.setForeground(new Color(0x000000));
-    panel.add(nominalField);
+        JTextField noRekTujuanField = new JTextField();
+        noRekTujuanField.setBounds(30, 210, 427, 30);
+        noRekTujuanField.setFont(new Font("Roboto", Font.PLAIN, 14));
+        noRekTujuanField.setForeground(new Color(0x000000));
+        panel.add(noRekTujuanField);
 
-    JButton buttonTransfer = new JButton("TRANSFER");
-    buttonTransfer.setBounds(168, 340, 150, 40);
-    buttonTransfer.setFont(new Font("Inter", Font.BOLD,  15 ));
-    buttonTransfer.setForeground(new Color(0xFFFFFF));
-    buttonTransfer.setBackground(new Color(0x1AC2D0));
-    buttonTransfer.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        JLabel nominal = new JLabel("NOMINAL");
+        nominal.setBounds(30, 240, 250, 50);
+        nominal.setFont(new Font("Inter", Font.PLAIN, 14));
+        nominal.setForeground(new Color(0x000000));
+        panel.add(nominal);
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+
+        JTextField nominalField = new JTextField();
+        nominalField.setBounds(30, 280, 427, 30);
+        nominalField.setFont(new Font("Roboto", Font.PLAIN, 14));
+        nominalField.setForeground(new Color(0x000000));
+        panel.add(nominalField);
+
+        JButton buttonTransfer = new JButton("TRANSFER");
+        buttonTransfer.setBounds(168, 340, 150, 40);
+        buttonTransfer.setFont(new Font("Inter", Font.BOLD, 15));
+        buttonTransfer.setForeground(new Color(0xFFFFFF));
+        buttonTransfer.setBackground(new Color(0x1AC2D0));
+        buttonTransfer.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        buttonTransfer.addActionListener(new ActionListener() {
 //    buttonTransfer.addActionListener(new ActionListener() {
 //        @Override
 //        public void actionPerformed(ActionEvent e) {
@@ -118,15 +137,17 @@ public class Transfer {
 //
 //        }
 //    });
-    panel.add(buttonTransfer);
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String uangTrans = nominalField.getText();
+                String penerima = namaPenerimaField.getText();
+                hasil = Double.parseDouble(uangTrans);
+                saldonasabah = saldonasabah - hasil;
+                JOptionPane.showMessageDialog(null, "Anda telah berhasil transfer "  + nomTrans + " kepada " + penerima +"\n" + "\t \t Saldo anda saat ini adalah " + df.format(saldonasabah));
+            }
+        });
+        panel.add(buttonTransfer);
 
-
-
-
-
-
-
-
-    frame.setVisible(true);
-}
+        frame.setVisible(true);
+    }
 }
