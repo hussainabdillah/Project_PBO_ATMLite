@@ -111,10 +111,10 @@ public class TarikSaldo {
         tarikButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nominal = nominalTextField.getText();
-                hasil = Double.parseDouble(nominal);
-                saldonasabah = saldonasabah - hasil;
-                JOptionPane.showMessageDialog(null, "Anda telah berhasil menarik saldo sebesar Rp. " + nominal + " Saldo anda sekarang adalah Rp. " + String.format(" %,.2f ",saldonasabah));
+                double nominal = Double.parseDouble(nominalTextField.getText());
+                saldonasabah = saldonasabah - nominal;
+                JOptionPane.showMessageDialog(null, "Anda telah berhasil menarik saldo sebesar Rp. " + String.format(" %,.2f ",nominal) + " melalui " + comboBox.getSelectedItem() + " Saldo anda saat ini tersisa Rp. " + String.format(" %,.2f ",saldonasabah));
+                //kalo  ada waktu tambah if else buat kalo saldo  dibawah yg mau tarik maka akan muncul pesan saldo tidak cukup
             }
         });
         panel.add(tarikButton);

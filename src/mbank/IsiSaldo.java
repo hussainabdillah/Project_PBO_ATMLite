@@ -133,23 +133,14 @@ public class IsiSaldo {
         isiButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nominal = nominalTextField.getText();
-                hasil = Double.parseDouble(nominal);
-                saldonasabah = saldonasabah + hasil;
-                JOptionPane.showMessageDialog(null, "Pengisian Saldo anda melalui metode "  + valueMetode + " sekarang adalah " + saldonasabah);
+                double nominal = Double.parseDouble(nominalTextField.getText());
+                saldonasabah = saldonasabah + nominal;
+                JOptionPane.showMessageDialog(null, "Pengisian Saldo sebesar Rp. " + String.format(" %,.2f ",nominal) + " untuk " + comboBox.getSelectedItem() + " melalui " + comboBox2.getSelectedItem() + " telah berhasil. Saldo anda saat ini adalah Rp. " + String.format(" %,.2f ",saldonasabah));
             }
         });
-//        isiButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                frame.dispose();
-//                new Berhasil();
-//            }
-//        });
         panel.add(isiButton);
-        //    private void isiButtonActionPerformed(java.awt.event.ActionEvent evt) {
-//            hasil =  saldonasabah + Integer.parseInt(textField.getText());
-//        }
+
+
 
         frame.setVisible(true);
     }
