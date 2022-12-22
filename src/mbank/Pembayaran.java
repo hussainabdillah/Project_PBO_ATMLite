@@ -12,6 +12,10 @@ public class Pembayaran {
     }
 
     private static JLabel label;
+    String universitas;
+    String nim;
+    double tagihan;
+
     public Pembayaran(){
         JFrame frame = new JFrame("Pembayaran");
         frame.setSize(500, 500);
@@ -75,14 +79,64 @@ public class Pembayaran {
         pendidikan.setForeground(new Color(0xFFFFFF));
         pendidikan.setBackground(new Color(0x1AC2D0));
         pendidikan.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        pendidikan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                universitas = JOptionPane.showInputDialog("Masukkan Nama Universitas");
+                if (universitas == null){
+                    JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
+                } else {
+                    nim = JOptionPane.showInputDialog("Masukkan NIM");
+                    if (nim == null){
+                        JOptionPane.showMessageDialog(null, "Anda belum memasukkan NIM");
+                    } else {
+                        JOptionPane.showConfirmDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " apakah sudah benar?");
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan Tagihan"));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan tagihan");
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + String.format(" %.2f ",tagihan) + "\nKlik OK untuk BAYAR");
+                            JOptionPane.showMessageDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " sebesar Rp. " + String.format("%.2f", tagihan) + " telah berhasil");
+                        }
+                    }
+                }
+            }
+        });
         panel.add(pendidikan);
 
-        JButton pulsaData = new JButton("PULSA & DATA");
+        JButton pulsaData = new JButton("PULSA");
         pulsaData.setBounds(285, 140, 150, 40);
         pulsaData.setFont(new Font("Inter", Font.BOLD,  15 ));
         pulsaData.setForeground(new Color(0xFFFFFF));
         pulsaData.setBackground(new Color(0x1AC2D0));
         pulsaData.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        pulsaData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String nomorHandphone = JOptionPane.showInputDialog("Masukkan Nomor Handphone anda");
+                if (nomorHandphone == null){
+                    JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian pulsa");
+                } else {
+                    int value = JOptionPane.showConfirmDialog(null, "Pembayaran pulsa dengan nomor " + nomorHandphone + " apakah sudah benar?");
+                    if (value == JOptionPane.YES_OPTION){
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan jumlah Tagihan Pulsa"));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan tagihan");
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + String.format(" %.2f ",tagihan) + "\nKlik OK untuk BAYAR");
+                            JOptionPane.showMessageDialog(null, "Pembayaran pulsa dengan nomor " + nomorHandphone + " sebesar Rp. " + String.format("%.2f", tagihan) + " telah berhasil");
+                        }
+                    }
+                    else if (value == JOptionPane.NO_OPTION){
+                        JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian pulsa");
+                    }
+
+
+                }
+            }
+        });
         panel.add(pulsaData);
 
         JButton eCommerce = new JButton("E-COMMERCE");
@@ -91,6 +145,29 @@ public class Pembayaran {
         eCommerce.setForeground(new Color(0xFFFFFF));
         eCommerce.setBackground(new Color(0x1AC2D0));
         eCommerce.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));;
+        eCommerce.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String namaToko = JOptionPane.showInputDialog("Masukkan Nama Toko");
+                if (namaToko == null){
+                    JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
+                } else {
+                    String kodePembayaran = JOptionPane.showInputDialog("Pembayaran untuk " +namaToko+ " Masukkan kode pembayaran");
+                    if (kodePembayaran == null){
+                        JOptionPane.showMessageDialog(null, "Anda belum memasukkan kode pembayaran");
+                    } else {
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan jumlah Tagihan"));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan tagihan");
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + String.format(" %.2f ",tagihan) + "\nKlik OK untuk BAYAR");
+                            JOptionPane.showMessageDialog(null, "Pembayaran e-commerce " + namaToko + " dengan tagihan sebesar " + String.format(" %.2f ",tagihan) + " sebesar Rp. " + String.format("%.2f", tagihan) + " telah berhasil");
+                        }
+                    }
+                }
+            }
+        });
         panel.add(eCommerce);
 
         JButton eMoney = new JButton("E-MONEY");
