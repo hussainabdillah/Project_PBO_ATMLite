@@ -73,34 +73,26 @@ public class Transfer {
         transferLabel.setForeground(new Color(0x000000));
         panel.add(transferLabel);
 
-        JLabel namaPenerima = new JLabel("NAMA PENERIMA");
-        namaPenerima.setBounds(30, 100, 250, 50);
-        namaPenerima.setFont(new Font("Inter", Font.PLAIN, 14));
-        namaPenerima.setForeground(new Color(0x000000));
-        panel.add(namaPenerima);
+        JLabel rekeningTujuanLabel = new JLabel("REKENING TUJUAN");
+        rekeningTujuanLabel.setBounds(30, 100, 250, 50);
+        rekeningTujuanLabel.setFont(new Font("Inter", Font.PLAIN, 14));
+        rekeningTujuanLabel.setForeground(new Color(0x000000));
+        panel.add(rekeningTujuanLabel);
 
-        JTextField namaPenerimaField = new JTextField();
-        namaPenerimaField.setBounds(30, 140, 427, 30);
-        namaPenerimaField.setFont(new Font("Roboto", Font.PLAIN, 14));
-        namaPenerimaField.setForeground(new Color(0x000000));
-        panel.add(namaPenerimaField);
+        JComboBox comboTrans = new JComboBox();
+        comboTrans.setBounds(30, 140, 427, 30);
+        comboTrans.setBackground(new Color(0xFFFFFF));
+        comboTrans.setForeground(new Color(0x000000));
+        comboTrans.setFont(new Font("Inter", Font.ITALIC, 14));
+        comboTrans.addItem("Antar Rekening Bank MU");
+        comboTrans.addItem("Antar Bank");
+        panel.add(comboTrans);
 
-        JLabel noRekTujuan = new JLabel("REKENING TUJUAN");
+        JLabel noRekTujuan = new JLabel("NO REKENING");
         noRekTujuan.setBounds(30, 170, 250, 50);
         noRekTujuan.setFont(new Font("Inter", Font.PLAIN, 14));
         noRekTujuan.setForeground(new Color(0x000000));
         panel.add(noRekTujuan);
-
-//coba
-        JComboBox comboTrans = new JComboBox();
-        comboTrans.setBounds(30, 210, 425, 30);
-        comboTrans.setBackground(new Color(0xFFFFFF));
-        comboTrans.setForeground(new Color(0x000000));
-        comboTrans.setFont(new Font("Inter", Font.ITALIC, 14));
-        comboTrans.addItem("Antar Bank");
-        comboTrans.addItem("Antar Rekening");
-        panel.add(comboTrans);
-        String nomTrans = comboTrans.getSelectedItem().toString();
 
         JTextField noRekTujuanField = new JTextField();
         noRekTujuanField.setBounds(30, 210, 427, 30);
@@ -108,7 +100,7 @@ public class Transfer {
         noRekTujuanField.setForeground(new Color(0x000000));
         panel.add(noRekTujuanField);
 
-        JLabel nominal = new JLabel("NOMINAL");
+        JLabel nominal = new JLabel("NOMINAL TRANSFER");
         nominal.setBounds(30, 240, 250, 50);
         nominal.setFont(new Font("Inter", Font.PLAIN, 14));
         nominal.setForeground(new Color(0x000000));
@@ -130,20 +122,22 @@ public class Transfer {
         buttonTransfer.setBackground(new Color(0x1AC2D0));
         buttonTransfer.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
         buttonTransfer.addActionListener(new ActionListener() {
-//    buttonTransfer.addActionListener(new ActionListener() {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            frame.dispose();
-//
-//        }
-//    });
             @Override
             public void actionPerformed(ActionEvent e){
-                String uangTrans = nominalField.getText();
-                String penerima = namaPenerimaField.getText();
-                hasil = Double.parseDouble(uangTrans);
-                saldonasabah = saldonasabah - hasil;
-                JOptionPane.showMessageDialog(null, "Anda telah berhasil transfer "  + nomTrans + " kepada " + penerima +"\n" + "\t \t Saldo anda saat ini adalah " + df.format(saldonasabah));
+                double nominal = Double.parseDouble(nominalField.getText());
+                String noRekTujuan = noRekTujuanField.getText();
+                double saldonasabahUpdate = saldonasabah - nominal;
+                if (nominal >= saldonasabah){
+                    JOptionPane.showMessageDialog(null, "Saldo anda tidak cukup");
+                } else {
+                    int value = JOptionPane.showConfirmDialog(null, "Transfer saldo sebesar Rp. " + df.format(nominal) + " ke rekening " + noRekTujuan + " apakah sudah sesuai?\nKlik YES untuk KONFIRMASI, NO untuk MEMBATALKAN" );
+                    if (value == JOptionPane.YES_OPTION){
+                        JOptionPane.showMessageDialog(null, "Transfer ke rekening "  + noRekTujuan + " sebesar Rp. " + df.format(nominal) +" telah Berhasil\n" + "Saldo anda saat ini adalah Rp. " + df.format(saldonasabahUpdate));
+                    }
+                    else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
+                        JOptionPane.showMessageDialog(null, "Transfer dibatalkan");
+                    }
+                }
             }
         });
         panel.add(buttonTransfer);
