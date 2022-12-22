@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.text.DecimalFormat;
 
 public class Pembayaran {
     public static void main(String[] args) {
@@ -73,6 +74,9 @@ public class Pembayaran {
         labelPembayaran.setForeground(new Color(0x000000));
         panel.add(labelPembayaran);
 
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+
         JButton pendidikan = new JButton("PENDIDIKAN");
         pendidikan.setBounds(50, 140, 150, 40);
         pendidikan.setFont(new Font("Inter", Font.BOLD,  15 ));
@@ -91,13 +95,16 @@ public class Pembayaran {
                     if (nim == null){
                         JOptionPane.showMessageDialog(null, "Anda belum memasukkan NIM");
                     } else {
-                        JOptionPane.showConfirmDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " apakah sudah benar?");
-                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan Tagihan"));
-                        if (tagihan == 0){
-                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan tagihan");
-                        } else {
-                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + String.format(" %.2f ",tagihan) + "\nKlik OK untuk BAYAR");
-                            JOptionPane.showMessageDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " sebesar Rp. " + String.format("%.2f", tagihan) + " telah berhasil");
+                        int value = JOptionPane.showConfirmDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " apakah sudah benar?");
+                        if (value == JOptionPane.YES_OPTION){
+                            tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan jumlah tagihan"));
+                            if (tagihan == 0){
+                                JOptionPane.showMessageDialog(null, "Anda belum memasukkan jumlah tagihan");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " sebesar Rp. " + df.format(tagihan) + " berhasil");
+                            }
+                        } else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
+                            JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
                         }
                     }
                 }
@@ -125,15 +132,13 @@ public class Pembayaran {
                         if (tagihan == 0){
                             JOptionPane.showMessageDialog(null, "Anda belum memasukkan tagihan");
                         } else {
-                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + String.format(" %.2f ",tagihan) + "\nKlik OK untuk BAYAR");
-                            JOptionPane.showMessageDialog(null, "Pembayaran pulsa dengan nomor " + nomorHandphone + " sebesar Rp. " + String.format("%.2f", tagihan) + " telah berhasil");
+                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + df.format(tagihan) + "\nKlik OK untuk BAYAR");
+                            JOptionPane.showMessageDialog(null, "Pembayaran pulsa dengan nomor " + nomorHandphone + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
                         }
                     }
-                    else if (value == JOptionPane.NO_OPTION){
+                    else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
                         JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian pulsa");
                     }
-
-
                 }
             }
         });
@@ -161,8 +166,8 @@ public class Pembayaran {
                         if (tagihan == 0){
                             JOptionPane.showMessageDialog(null, "Anda belum memasukkan tagihan");
                         } else {
-                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + String.format(" %.2f ",tagihan) + "\nKlik OK untuk BAYAR");
-                            JOptionPane.showMessageDialog(null, "Pembayaran e-commerce " + namaToko + " dengan tagihan sebesar " + String.format(" %.2f ",tagihan) + " sebesar Rp. " + String.format("%.2f", tagihan) + " telah berhasil");
+                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + df.format(tagihan) + "\nKlik OK untuk BAYAR");
+                            JOptionPane.showMessageDialog(null, "Pembayaran e-commerce " + namaToko + " dengan tagihan sebesar Rp. " + df.format(tagihan) + " telah berhasil");
                         }
                     }
                 }
