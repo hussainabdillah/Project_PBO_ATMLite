@@ -5,17 +5,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.text.DecimalFormat;
 
-public class Bank {
+public class Bank extends Nasabah {
     public static void main(String[] args) {
         Bank bank = new Bank();
     }
 
     private static JLabel label;
-    private double saldonasabah = 1000000;
-    private double hasil;
 
     public Bank() {
+        Nasabah nasabah = new Nasabah();
+        nasabah.setNama("Hussain Abdilah T.K");
+        nasabah.setNoRekening("835906355");
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+
         JFrame frame = new JFrame("Homepage");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,19 +51,19 @@ public class Bank {
         labelMU.setForeground(new Color(0xEC5E2C));
         panel.add(labelMU);
 
-        JLabel  nama = new JLabel( "HUSSAIN ABDILLAH");
+        JLabel  nama = new JLabel( "Hai, " + Nasabah.getNama());
         nama.setBounds(30, 47, 250, 50);
         nama.setFont(new Font("Inter", Font.BOLD,  18 ));
         nama.setForeground(new Color(0x000000));
         panel.add(nama);
 
-        JLabel norek =  new JLabel("801322123");
+        JLabel norek =  new JLabel(Nasabah.getNoRekening());
         norek.setBounds(30, 65, 250, 50);
         norek.setFont(new Font("Inter", Font.BOLD,  13 ));
         norek.setForeground(new Color(0xEC5E2C));
         panel.add(norek);
 
-        JLabel saldo = new JLabel("Rp " + String.valueOf(String.format(" %,.2f ",saldonasabah)));
+        JLabel saldo = new JLabel("Rp. " + String.valueOf(df.format(saldonasabah)));
         saldo.setBounds(300, 50, 250, 50);
         saldo.setFont(new Font("Inter", Font.BOLD,  20 ));
         saldo.setForeground(new Color(0x000000));
@@ -72,7 +78,7 @@ public class Bank {
         cekSaldo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Saldo anda sebesar Rp " + String.valueOf(String.format(" %,.2f ",saldonasabah)));
+                JOptionPane.showMessageDialog(null, "Saldo anda sebesar Rp. " + String.valueOf(df.format(saldonasabah)));
             }
         });
         panel.add(cekSaldo);
@@ -167,17 +173,11 @@ public class Bank {
         });
         panel.add(logout);
 
-
-        
-
-
         URL vectorBawah = Bank.class.getResource("VectorOrange.png");
         ImageIcon vector = new ImageIcon(vectorBawah);
         JLabel label5 = new JLabel(vector);
         label5.setBounds(0, 415, 500, 50);
         panel.add(label5);
-
-
 
 
         frame.setVisible(true);

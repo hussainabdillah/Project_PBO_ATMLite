@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.text.DecimalFormat;
 
+
 public class Pembayaran {
     public static void main(String[] args) {
         Pembayaran pembayaran = new Pembayaran();
@@ -181,6 +182,30 @@ public class Pembayaran {
         eMoney.setForeground(new Color(0xFFFFFF));
         eMoney.setBackground(new Color(0x1AC2D0));
         eMoney.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        eMoney.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String nomorHpeMoney = JOptionPane.showInputDialog("Masukkan Nomor Handphone anda");
+                if (nomorHpeMoney == null){
+                    JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian e-Money");
+                } else {
+                    int value = JOptionPane.showConfirmDialog(null, "Pengisian e-Money untuk nomor " + nomorHpeMoney + " apakah sudah benar?");
+                    if (value == JOptionPane.YES_OPTION){
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan nominal e-Money yang Anda inginkan"));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan nominal");
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Anda akan mengisi e-Money sebesar Rp. " + df.format(tagihan) + "\nKlik OK untuk melanjutkan");
+                            JOptionPane.showMessageDialog(null, "Pengisian e-Money dengan nomor " + nomorHpeMoney + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
+                        }
+                    }
+                    else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
+                        JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian e-Money");
+                    }
+                }
+            }
+        });
         panel.add(eMoney);
 
         JButton zakatInfaq = new JButton("ZAKAT & INFAQ");
@@ -189,6 +214,35 @@ public class Pembayaran {
         zakatInfaq.setForeground(new Color(0xFFFFFF));
         zakatInfaq.setBackground(new Color(0x1AC2D0));
         zakatInfaq.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        zakatInfaq.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String zakInChoice = JOptionPane.showInputDialog("Silakan pilih transaksi yang Anda inginkan");
+
+                if (zakInChoice == null){
+                    JOptionPane.showMessageDialog(null, "Anda telah membatalkan transaksi");
+                } else {
+                    String atasNama = JOptionPane.showInputDialog("Masukkan nama yang melakukan pembayaran");
+                    if (atasNama == null) {
+                        JOptionPane.showMessageDialog(null, "Anda telah membatalkan transaksi");
+                    }else {
+                        int value = JOptionPane.showConfirmDialog(null, "Anda ingin melakukan pembayaran " + zakInChoice + " apakah sudah benar?");
+                        if (value == JOptionPane.YES_OPTION) {
+                            tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan nominal yang Anda inginkan"));
+                            if (tagihan == 0) {
+                                JOptionPane.showMessageDialog(null, "Anda belum memasukkan nominal");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Anda akan akan melakukan pembayaran " + zakInChoice + " sebesar Rp. " + df.format(tagihan) + " atas nama " + atasNama + "\nKlik OK untuk BAYAR");
+                                JOptionPane.showMessageDialog(null, "Pembayaran " + zakInChoice + " atas nama " + atasNama + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
+                            }
+                        }else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
+                            JOptionPane.showMessageDialog(null, "Anda telah membatalkan pembayaran Zakat & Infaq");
+                        }
+                    }
+                }
+            }
+        });
         panel.add(zakatInfaq);
 
         JButton bpjsKesehatan = new JButton("BPJS KESEHATAN");
@@ -197,16 +251,31 @@ public class Pembayaran {
         bpjsKesehatan.setForeground(new Color(0xFFFFFF));
         bpjsKesehatan.setBackground(new Color(0x1AC2D0));
         bpjsKesehatan.setBorder(BorderFactory.createLineBorder(new Color(0x1AC2D0)));
+        bpjsKesehatan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String nomorBayar = JOptionPane.showInputDialog("Masukkan Nomor Pembayaran anda");
+                if (nomorBayar == null){
+                    JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran BPJS Kesehatan");
+                } else {
+                    int value = JOptionPane.showConfirmDialog(null, "Pembayaran BPJS Kesehatan  untuk nomor " + nomorBayar + " apakah sudah benar?");
+                    if (value == JOptionPane.YES_OPTION){
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan nominal yang akan Anda bayar "));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan nominal");
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Anda akan melakukan pembayaran BPJS Kesehatan sebesar Rp. " + df.format(tagihan) + "\nKlik OK untuk melanjutkan");
+                            JOptionPane.showMessageDialog(null, "Pembayaran BPJS Kesehatan dengan nomor " + nomorBayar + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
+                        }
+                    }
+                    else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
+                        JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran BPJS Kesehatan");
+                    }
+                }
+            }
+        });
         panel.add(bpjsKesehatan);
-
-
-
-
-
-
-
-
-
         frame.setVisible(true);
     }
 

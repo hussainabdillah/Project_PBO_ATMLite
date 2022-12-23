@@ -5,17 +5,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.text.DecimalFormat;
 
-public class TarikSaldo {
+public class TarikSaldo extends Nasabah {
     public static void main(String[] args) {
         TarikSaldo tarikSaldo = new TarikSaldo();
     }
 
     private static JLabel label;
-    private double saldonasabah = 1000000;
-    private double hasil;
 
     public TarikSaldo(){
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+
         JFrame frame = new JFrame("Tarik Saldo");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,16 +115,26 @@ public class TarikSaldo {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double nominal = Double.parseDouble(nominalTextField.getText());
-                saldonasabah = saldonasabah - nominal;
-                JOptionPane.showMessageDialog(null, "Anda telah berhasil menarik saldo sebesar Rp. " + String.format(" %,.2f ",nominal) + " melalui " + comboBox.getSelectedItem() + " Saldo anda saat ini tersisa Rp. " + String.format(" %,.2f ",saldonasabah));
-                //kalo  ada waktu tambah if else buat kalo saldo  dibawah yg mau tarik maka akan muncul pesan saldo tidak cukup
-            }
-        });
+                if (nominal > saldonasabah){
+                    JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
+                }
+                else {
+                    saldonasabah -= nominal;
+                    int value = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin melakukan penarikan sebesar Rp. " + df.format(nominal) + " ?", "Konfirmasi Penarikan", JOptionPane.YES_NO_OPTION);
+                    if (value == JOptionPane.YES_OPTION){
+                        JOptionPane.showMessageDialog(null, "Anda telah berhasil menarik saldo sebesar Rp. " + df.format(nominal) + " melalui " + comboBox.getSelectedItem() + " Saldo anda saat ini tersisa Rp. " + df.format(saldonasabah));
+                    }
+                    else if (value == JOptionPane.NO_OPTION){
+                        JOptionPane.showMessageDialog(null, "Penarikan Saldo dibatalkan");
+                        saldonasabah += nominal;
+                    }
+                }
+                }
+            });
         panel.add(tarikButton);
-
-
-
 
         frame.setVisible(true);
     }
+
 }
+

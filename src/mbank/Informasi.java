@@ -12,12 +12,15 @@ public static void main(String[] args) {
     }
 
     private static JLabel label;
-    private String nama = "HUSSAIN ABDILLAH T.K";
-    private double saldonasabah = 1000000;
-    private double hasil;
-    private String jenis = "BMU Prioritas";
 
     public Informasi() {
+        Nasabah nasabah = new Nasabah();
+        nasabah.setNama("Hussain Abdilah T.K");
+        nasabah.setNoRekening("835906355");
+        String nama = nasabah.getNama();
+        String noRekening = nasabah.getNoRekening();
+        String jenisTabungan = "BMU Prioritas";
+
         JFrame frame = new JFrame("Informasi");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,13 +97,13 @@ public static void main(String[] args) {
         labelNoRekening.setForeground(new Color(0x000000));
         panel.add(labelNoRekening);
 
-        JTextField noRekening = new JTextField(String .valueOf(" " + 123456789));
-        noRekening.setBounds(100, 160, 350, 30);
-        noRekening.setFont(new Font("Inter", Font.PLAIN, 14));
-        noRekening.setBackground(new Color(0xFFFFFF));
-        noRekening.setForeground(new Color(0x000000));
-        noRekening.setEditable(false);
-        panel.add(noRekening);
+        JTextField noRekeningField = new JTextField(String .valueOf(" " + noRekening));
+        noRekeningField.setBounds(100, 160, 350, 30);
+        noRekeningField.setFont(new Font("Inter", Font.PLAIN, 14));
+        noRekeningField.setBackground(new Color(0xFFFFFF));
+        noRekeningField.setForeground(new Color(0x000000));
+        noRekeningField.setEditable(false);
+        panel.add(noRekeningField);
 
         JLabel labelJenisTabungan = new JLabel("JENIS     : ");
         labelJenisTabungan.setBounds(30, 200, 250, 50);
@@ -108,42 +111,13 @@ public static void main(String[] args) {
         labelJenisTabungan.setForeground(new Color(0x000000));
         panel.add(labelJenisTabungan);
 
-        JTextField infoJenisTabungan = new JTextField(String .valueOf(" " + jenis));
+        JTextField infoJenisTabungan = new JTextField(String .valueOf(" " + jenisTabungan));
         infoJenisTabungan.setBounds(100, 210, 350, 30);
         infoJenisTabungan.setFont(new Font("Inter", Font.PLAIN, 14));
         infoJenisTabungan.setBackground(new Color(0xFFFFFF));
         infoJenisTabungan.setForeground(new Color(0x000000));
         infoJenisTabungan.setEditable(false);
         panel.add(infoJenisTabungan);
-
-
-
-
-
-
-
-
-
-
-
-//        JLabel  nama = new JLabel( "HUSSAIN ABDILLAH");
-//        nama.setBounds(30, 47, 250, 50);
-//        nama.setFont(new Font("Inter", Font.BOLD,  18 ));
-//        nama.setForeground(new Color(0x000000));
-//        panel.add(nama);
-//
-//        JLabel norek =  new JLabel("801322123");
-//        norek.setBounds(30, 65, 250, 50);
-//        norek.setFont(new Font("Inter", Font.BOLD,  13 ));
-//        norek.setForeground(new Color(0xEC5E2C));
-//        panel.add(norek);
-//
-//        JLabel saldo = new JLabel("Rp " + String.valueOf(String.format(" %,.2f ",saldonasabah)));
-//        saldo.setBounds(30, 85, 250, 50);
-//        saldo.setFont(new Font("Inter", Font.BOLD,  13 ));
-//        saldo.setForeground(new Color(0x000000));
-//        panel.add(saldo);
-
 
 
         frame.setVisible(true);

@@ -7,14 +7,12 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.text.DecimalFormat;
 
-public class Transfer {
+public class Transfer extends Nasabah {
     public static void main(String[] args) {
         Transfer transfer = new Transfer();
     }
 
     private static JLabel label;
-    private double saldonasabah = 1000000;
-    private double hasil;
 
     public Transfer() {
         JFrame frame = new JFrame("Transfer");
@@ -126,16 +124,18 @@ public class Transfer {
             public void actionPerformed(ActionEvent e){
                 double nominal = Double.parseDouble(nominalField.getText());
                 String noRekTujuan = noRekTujuanField.getText();
-                double saldonasabahUpdate = saldonasabah - nominal;
-                if (nominal >= saldonasabah){
-                    JOptionPane.showMessageDialog(null, "Saldo anda tidak cukup");
-                } else {
-                    int value = JOptionPane.showConfirmDialog(null, "Transfer saldo sebesar Rp. " + df.format(nominal) + " ke rekening " + noRekTujuan + " apakah sudah sesuai?\nKlik YES untuk KONFIRMASI, NO untuk MEMBATALKAN" );
+                if (nominal > saldonasabah){
+                    JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
+                }
+                else {
+                    saldonasabah -= nominal;
+                    int value = JOptionPane.showConfirmDialog(null, "Transfer saldo sebesar Rp. " + df.format(nominal) + " ke rekening " + noRekTujuan + " apakah sudah sesuai?\nKlik YES untuk KONFIRMASI dan NO untuk MEMBATALKAN","Konfirmasi Transfer", JOptionPane.YES_NO_OPTION );
                     if (value == JOptionPane.YES_OPTION){
-                        JOptionPane.showMessageDialog(null, "Transfer ke rekening "  + noRekTujuan + " sebesar Rp. " + df.format(nominal) +" telah Berhasil\n" + "Saldo anda saat ini adalah Rp. " + df.format(saldonasabahUpdate));
+                        JOptionPane.showMessageDialog(null, "Transfer ke rekening "  + noRekTujuan + " sebesar Rp. " + df.format(nominal) +" telah Berhasil\n" + "Saldo anda saat ini adalah Rp. " + df.format(saldonasabah));
                     }
-                    else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
+                    else if (value == JOptionPane.NO_OPTION){
                         JOptionPane.showMessageDialog(null, "Transfer dibatalkan");
+                        saldonasabah += nominal;
                     }
                 }
             }

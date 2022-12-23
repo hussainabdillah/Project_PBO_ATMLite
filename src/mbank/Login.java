@@ -14,6 +14,9 @@ public class Login implements ActionListener {
     private static JLabel label;
 
     public Login() {
+        Nasabah nasabah = new Nasabah();
+        nasabah.setPassword("070707");
+
         JFrame frame = new JFrame("Login");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +84,7 @@ public class Login implements ActionListener {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (textField.getText().equals("admin") && passwordField.getText().equals("admin")) {
+                if (textField.getText().equals("admin") && passwordField.getText().equals(nasabah.getPassword())) {
                     datasalah.setVisible(false);
                     frame.dispose();
                     new Bank();

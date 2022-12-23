@@ -5,18 +5,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.text.DecimalFormat;
 
 
-public class IsiSaldo {
+public class IsiSaldo extends Nasabah {
     public static void main(String[] args) {
         IsiSaldo isiSaldo = new IsiSaldo();
     }
 
     private static JLabel label;
-    private double saldonasabah = 1000000;
-    private double hasil;
 
     public IsiSaldo() {
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+
         JFrame frame = new JFrame("Isi Saldo");
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,11 +138,17 @@ public class IsiSaldo {
             public void actionPerformed(ActionEvent e) {
                 double nominal = Double.parseDouble(nominalTextField.getText());
                 saldonasabah = saldonasabah + nominal;
-                JOptionPane.showMessageDialog(null, "Pengisian Saldo sebesar Rp. " + String.format(" %,.2f ",nominal) + " untuk " + comboBox.getSelectedItem() + " melalui " + comboBox2.getSelectedItem() + " telah berhasil. Saldo anda saat ini adalah Rp. " + String.format(" %,.2f ",saldonasabah));
+                int value = JOptionPane.showConfirmDialog(null, "Apakah anda ingin mengisi saldo sebesar Rp. " + df.format(nominal) + " melalui " + comboBox2.getSelectedItem() + " ?", "Konfirmasi Pengisian Saldo", JOptionPane.YES_NO_OPTION );
+                if (value == JOptionPane.YES_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Pengisian Saldo sebesar Rp. " + df.format(nominal) + " untuk " + comboBox.getSelectedItem() + " melalui " + comboBox2.getSelectedItem() + " telah berhasil. Saldo anda saat ini adalah Rp. " + df.format(saldonasabah));
+                }
+                else if (value == JOptionPane.NO_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Pengisian Saldo dibatalkan.");
+                    saldonasabah -= nominal;
+                }
             }
         });
         panel.add(isiButton);
-
 
 
         frame.setVisible(true);
