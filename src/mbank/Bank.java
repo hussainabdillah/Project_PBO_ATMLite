@@ -64,10 +64,35 @@ public class Bank extends Nasabah {
         panel.add(norek);
 
         JLabel saldo = new JLabel("Rp. " + String.valueOf(df.format(saldonasabah)));
-        saldo.setBounds(300, 50, 250, 50);
+        saldo.setBounds(320, 50, 250, 50);
         saldo.setFont(new Font("Inter", Font.BOLD,  20 ));
         saldo.setForeground(new Color(0x000000));
         panel.add(saldo);
+
+        JButton backButton = new JButton("BUNGA");
+        backButton.setBounds(370, 20, 85, 30);
+        backButton.setBackground(new Color(0xEC5E2C));
+        backButton.setForeground(new Color(0xFFFFFF));
+        backButton.setBorder(BorderFactory.createLineBorder(new Color(0xEC5E2C)));
+        backButton.setFont(new Font("Inter", Font.BOLD, 10));
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Bunga bunga = new Bunga();
+                Bunga.BankPribadi bungaPribadi  = bunga.new BankPribadi();
+                bungaPribadi.rasioBunga();
+                Bunga.BankUmum bungaUmum = bunga.new BankUmum();
+                bungaUmum.rasioBunga();
+                Bunga.BankSyariah bungaSyariah = bunga.new BankSyariah();
+                bungaUmum.rasioBunga();
+                Bunga.BankPasar bungaPasar = bunga.new BankPasar();
+                bungaUmum.rasioBunga();
+
+                JOptionPane.showMessageDialog(null, "Bank Pribadi memiliki rasio : " + bungaPribadi.rasioBunga() + "%\n" + "Bank Umum memiliki rasio   : " + bungaUmum.rasioBunga() + "%\n" + "Bank Syariah memiliki rasio : " + bungaSyariah.rasioBunga() + "%\n" + "Bank Pasar memiliki rasio    : " + bungaPasar.rasioBunga() + "%\n" , "Informasi Bunga", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        panel.add(backButton);
+
 
         JButton cekSaldo = new JButton("CEK SALDO");
         cekSaldo.setBounds(50, 140, 150, 40);

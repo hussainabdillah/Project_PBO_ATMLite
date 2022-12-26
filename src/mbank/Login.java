@@ -15,6 +15,7 @@ public class Login implements ActionListener {
 
     public Login() {
         Nasabah nasabah = new Nasabah();
+        nasabah.setUsername("hussainabdillah");
         nasabah.setPassword("070707");
 
         JFrame frame = new JFrame("Login");
@@ -84,7 +85,7 @@ public class Login implements ActionListener {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (textField.getText().equals("admin") && passwordField.getText().equals(nasabah.getPassword())) {
+                if (textField.getText().equals(nasabah.getUsername()) && passwordField.getText().equals(nasabah.getPassword())) {
                     datasalah.setVisible(false);
                     frame.dispose();
                     new Bank();

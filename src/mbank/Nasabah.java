@@ -2,9 +2,11 @@ package mbank;
 
 public class Nasabah {
     private static String nama;
-    public static double saldonasabah = 2000000;
+    public static double saldonasabah = 1000000;
     private static String noRekening;
+    private String username;
     private String password;
+
 
     public Nasabah() {
 
@@ -32,6 +34,14 @@ public class Nasabah {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }
