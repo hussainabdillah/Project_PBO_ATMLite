@@ -8,7 +8,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 
 
-public class Pembayaran extends Nasabah {
+public class Pembayaran {
     public static void main(String[] args) {
         Pembayaran pembayaran = new Pembayaran();
     }
@@ -89,37 +89,22 @@ public class Pembayaran extends Nasabah {
             public void actionPerformed(ActionEvent e) {
 
                 universitas = JOptionPane.showInputDialog("Masukkan Nama Universitas");
-                if (universitas == null ) {
+                if (universitas == null){
                     JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
-                } else if (universitas.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Anda belum memasukkan Universitas");
                 } else {
                     nim = JOptionPane.showInputDialog("Masukkan NIM");
-                    if (nim == null ){
-                        JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
-                    } else if (nim.equals("")) {
+                    if (nim == null){
                         JOptionPane.showMessageDialog(null, "Anda belum memasukkan NIM");
                     } else {
-                        int value = JOptionPane.showConfirmDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " apakah sudah benar?","Konfirmasi Identitas",JOptionPane.YES_NO_OPTION);
+                        int value = JOptionPane.showConfirmDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " apakah sudah benar?");
                         if (value == JOptionPane.YES_OPTION){
                             tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan jumlah tagihan"));
                             if (tagihan == 0){
                                 JOptionPane.showMessageDialog(null, "Anda belum memasukkan jumlah tagihan");
-                            } else if (tagihan > saldonasabah) {
-                                JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
-                            } else if (tagihan == JOptionPane.CANCEL_OPTION){
-                                JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
                             } else {
-                                int value2 = JOptionPane.showConfirmDialog(null, "Anda akan membayar tagihan " + universitas + " dengan NIM " + nim + " sebesar Rp. " + df.format(tagihan) + " apakah sudah benar?","Konfirmasi Pembayaran",JOptionPane.YES_NO_OPTION);
-                                if (value2 == JOptionPane.YES_OPTION){
-                                    saldonasabah -= tagihan;
-                                    JOptionPane.showMessageDialog(null, "Pembayaran Pendidikan " + universitas + " dengan NIM " + nim + " sebesar Rp. " + df.format(tagihan) + " berhasil");
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
-                                }
-
+                                JOptionPane.showMessageDialog(null, "Pembayaran pendidikan " + universitas + " dengan NIM " + nim + " sebesar Rp. " + df.format(tagihan) + " berhasil");
                             }
-                        } else if (value == JOptionPane.NO_OPTION){
+                        } else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
                             JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
                         }
                     }
@@ -142,30 +127,17 @@ public class Pembayaran extends Nasabah {
                 if (nomorHandphone == null){
                     JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian pulsa");
                 } else {
-                    int value = JOptionPane.showConfirmDialog(null, "Pembayaran pulsa dengan nomor " + nomorHandphone + " apakah sudah benar?","Konfirmasi",JOptionPane.YES_NO_OPTION);
+                    int value = JOptionPane.showConfirmDialog(null, "Pembayaran pulsa dengan nomor " + nomorHandphone + " apakah sudah benar?");
                     if (value == JOptionPane.YES_OPTION){
-                        String input = "";
-                        input = JOptionPane.showInputDialog(null,"Masukkan jumlah Tagihan Pulsa","Pembayaran Pulsa",JOptionPane.INFORMATION_MESSAGE);
-                        if(input != null){
-                            tagihan = Double.parseDouble(input) ;
-                            int value3 = JOptionPane.showConfirmDialog(null,"Anda akan membayar tagihan sebesar Rp. " + df.format(tagihan) ,"Konfirmasi Pembayaran",JOptionPane.YES_NO_OPTION);
-                            if (value3 == JOptionPane.YES_OPTION){
-                                if (tagihan > saldonasabah){
-                                    JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
-                                } else {
-                                    saldonasabah -= tagihan;
-                                    JOptionPane.showMessageDialog(null, "Pembayaran Pulsa dengan nomor " + nomorHandphone + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
-                                }
-                            }
-                            else if (value3 == JOptionPane.NO_OPTION){
-                                JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
-                            }
-                        }
-                        else {
-                            JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian pulsa");
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan jumlah Tagihan Pulsa"));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan tagihan");
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + df.format(tagihan) + "\nKlik OK untuk BAYAR");
+                            JOptionPane.showMessageDialog(null, "Pembayaran pulsa dengan nomor " + nomorHandphone + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
                         }
                     }
-                    else if (value == JOptionPane.NO_OPTION){
+                    else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
                         JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian pulsa");
                     }
                 }
@@ -187,27 +159,16 @@ public class Pembayaran extends Nasabah {
                 if (namaToko == null){
                     JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
                 } else {
-                    String kodePembayaran = JOptionPane.showInputDialog("Pembayaran untuk " +namaToko+ " Masukkan kode pembayaran");
+                    String kodePembayaran = JOptionPane.showInputDialog("Masukkan kode pembayaran");
                     if (kodePembayaran == null){
                         JOptionPane.showMessageDialog(null, "Anda belum memasukkan kode pembayaran");
                     } else {
-                        String input = "";
-                        input = JOptionPane.showInputDialog(null,"Masukkan jumlah Tagihan","Pembayaran E-Commerce",JOptionPane.INFORMATION_MESSAGE);
-                        if (input == null){
-                            JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan jumlah Tagihan"));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan tagihan");
                         } else {
-                            tagihan = Double.parseDouble(input);
-                            int value4 = JOptionPane.showConfirmDialog(null, "Anda akan membayar tagihan " + namaToko + " sebesar Rp. " + df.format(tagihan) ,"Konfirmasi Pembayaran",JOptionPane.YES_NO_OPTION);
-                            if (value4 == JOptionPane.YES_OPTION){
-                                if (tagihan > saldonasabah){
-                                    JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
-                                } else {
-                                    saldonasabah -= tagihan;
-                                    JOptionPane.showMessageDialog(null, "Pembayaran E-Commerce " + namaToko + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
-                                }
-                            } else if (value4 == JOptionPane.NO_OPTION){
-                                JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
-                            }
+                            JOptionPane.showMessageDialog(null,"Anda akan membayar tagihan sebesar Rp. " + df.format(tagihan) + "\nKlik OK untuk BAYAR");
+                            JOptionPane.showMessageDialog(null, "Pembayaran E-commerce " + namaToko + " dengan tagihan sebesar Rp. " + df.format(tagihan) + " telah berhasil");
                         }
                     }
                 }
@@ -229,29 +190,17 @@ public class Pembayaran extends Nasabah {
                 if (nomorHpeMoney == null){
                     JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian e-Money");
                 } else {
-                    String jenisEmoney = JOptionPane.showInputDialog("Masukkan Jenis e-Money yang akan diisi");
-                    int value = JOptionPane.showConfirmDialog(null, "Pengisian e-Money " + jenisEmoney + " untuk nomor " + nomorHpeMoney + " apakah sudah benar?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    int value = JOptionPane.showConfirmDialog(null, "Pengisian e-Money untuk nomor " + nomorHpeMoney + " apakah sudah benar?");
                     if (value == JOptionPane.YES_OPTION){
-                        String input = "";
-                        input = JOptionPane.showInputDialog(null,"Masukkan nominal e-Money yang Anda inginkan","Pembayaran e-Money",JOptionPane.INFORMATION_MESSAGE);
-                        if (input == null){
-                            JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian e-Money");
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan nominal e-Money yang Anda inginkan"));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan nominal");
                         } else {
-                            tagihan = Double.parseDouble(input);
-                            int value5 = JOptionPane.showConfirmDialog(null, "Anda akan mengisi saldo " + jenisEmoney + " sebesar Rp. " + df.format(tagihan) ,"Konfirmasi Pembayaran",JOptionPane.YES_NO_OPTION);
-                            if (value5 == JOptionPane.YES_OPTION){
-                                if (tagihan > saldonasabah){
-                                    JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
-                                } else {
-                                    saldonasabah -= tagihan;
-                                    JOptionPane.showMessageDialog(null, "Pengisian e-Money " + jenisEmoney + " dengan nomor " + nomorHpeMoney +" sebesar Rp. " + df.format(tagihan) + " telah berhasil");
-                                }
-                            } else if (value5 == JOptionPane.NO_OPTION){
-                                JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian e-Money");
-                            }
+                            JOptionPane.showMessageDialog(null,"Anda akan mengisi e-Money sebesar Rp. " + df.format(tagihan) + "\nKlik OK untuk melanjutkan");
+                            JOptionPane.showMessageDialog(null, "Pengisian e-Money dengan nomor " + nomorHpeMoney + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
                         }
                     }
-                    else if (value == JOptionPane.NO_OPTION){
+                    else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
                         JOptionPane.showMessageDialog(null, "Anda membatalkan pengisian e-Money");
                     }
                 }
@@ -269,33 +218,27 @@ public class Pembayaran extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String zakInChoice = JOptionPane.showInputDialog("Silakan pilih transaksi yang Anda inginkan, Anda dapat memilih antara Zakat atau Infaq");
+                String zakInChoice = JOptionPane.showInputDialog("Silakan piih transaksi yang Anda inginkan");
+
                 if (zakInChoice == null){
-                    JOptionPane.showMessageDialog(null, "Anda telah membatalkan pembayaran Zakat & Infaq");
+                    JOptionPane.showMessageDialog(null, "Anda telah membatalkan transaksi");
                 } else {
                     String atasNama = JOptionPane.showInputDialog("Masukkan nama yang melakukan pembayaran");
                     if (atasNama == null) {
                         JOptionPane.showMessageDialog(null, "Anda telah membatalkan transaksi");
                     }else {
-                        String input = "";
-                        input = JOptionPane.showInputDialog(null,"Masukkan nominal "+ zakInChoice +" yang Anda inginkan","Pembayaran Zakat & Infaq",JOptionPane.INFORMATION_MESSAGE);
-                        if (input == null) {
-                            JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
-                        }
-                        else {
-                            tagihan = Double.parseDouble(input);
-                            int value = JOptionPane.showConfirmDialog(null, "Anda akan melakukan pembayaran " + zakInChoice + " sebesar Rp. " + df.format(tagihan) ,"Konfirmasi Pembayaran",JOptionPane.YES_NO_OPTION);
-                            if (value == JOptionPane.YES_OPTION){
-                                if (tagihan > saldonasabah){
-                                    JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
-                                } else {
-                                    saldonasabah -= tagihan;
-                                    JOptionPane.showMessageDialog(null, "Pembayaran " + zakInChoice + " atas nama " + atasNama + " sebesar Rp. " + df.format(tagihan) + " telah berhasil. Dana telah diterima oleh LazisMU");
-                                }
-                            } else if (value == JOptionPane.NO_OPTION){
-                                JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran");
+                        int value = JOptionPane.showConfirmDialog(null, "Anda ingin melakukan pembayaran " + zakInChoice + " apakah sudah benar?");
+                        if (value == JOptionPane.YES_OPTION) {
+                            tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan nominal yang Anda inginkan"));
+                            if (tagihan == 0) {
+                                JOptionPane.showMessageDialog(null, "Anda belum memasukkan nominal");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Anda akan akan melakukan pembayaran " + zakInChoice + " sebesar Rp. " + df.format(tagihan) + " atas nama " + atasNama + "\nKlik OK untuk BAYAR");
+                                JOptionPane.showMessageDialog(null, "Pembayaran " + zakInChoice + " atas nama " + atasNama + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
                             }
-                        }
+                        }else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
+                                JOptionPane.showMessageDialog(null, "Anda telah membatalkan pembayaran Zakat & Infaq");
+                            }
                     }
                 }
             }
@@ -312,28 +255,22 @@ public class Pembayaran extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String virtualAccount = JOptionPane.showInputDialog("Masukkan Nomor Virtual Account anda");
-                if (virtualAccount == null){
+                String nomorBayar = JOptionPane.showInputDialog("Masukkan Nomor Pembayaran Anda");
+                if (nomorBayar == null){
                     JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran BPJS Kesehatan");
                 } else {
-                    String input = "";
-                    input = JOptionPane.showInputDialog(null,"Masukkan tagihan BPJS Kesehatan Anda ","Pembayaran BPJS Kesehatan",JOptionPane.INFORMATION_MESSAGE);
-                    if (input == null){
+                    int value = JOptionPane.showConfirmDialog(null, "Pembayaran BPJS Kesehatan  untuk nomor " + nomorBayar + " apakah sudah benar?");
+                    if (value == JOptionPane.YES_OPTION){
+                        tagihan = Double.parseDouble(JOptionPane.showInputDialog("Masukkan nominal yang akan Anda bayar "));
+                        if (tagihan == 0){
+                            JOptionPane.showMessageDialog(null, "Anda belum memasukkan nominal");
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Anda akan melakukan pembayaran BPJS Kesehatan sebesar Rp. " + df.format(tagihan) + "\nKlik OK untuk melanjutkan");
+                            JOptionPane.showMessageDialog(null, "Pembayaran BPJS Kesehatan dengan nomor " + nomorBayar + " sebesar Rp. " + df.format(tagihan) + " telah berhasil");
+                        }
+                    }
+                    else if (value == JOptionPane.NO_OPTION || value == JOptionPane.CANCEL_OPTION){
                         JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran BPJS Kesehatan");
-                    } else {
-                        tagihan = Double.parseDouble(input);
-                        int value = JOptionPane.showConfirmDialog(null, "Anda akan melakukan pembayaran BPJS Kesehatan dengan no VA " + virtualAccount + " sebesar Rp. " + df.format(tagihan) ,"Konfirmasi Pembayaran",JOptionPane.YES_NO_OPTION);
-                        if (value == JOptionPane.YES_OPTION){
-                            if (tagihan > saldonasabah){
-                                JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
-                            } else {
-                                saldonasabah -= tagihan;
-                                JOptionPane.showMessageDialog(null, "Pembayaran BPJS Kesehatan sebesar Rp. " + df.format(tagihan) + " telah berhasil");
-                            }
-                        }
-                        else if (value == JOptionPane.NO_OPTION) {
-                            JOptionPane.showMessageDialog(null, "Anda membatalkan pembayaran BPJS Kesehatan");
-                        }
                     }
                 }
             }
@@ -341,4 +278,5 @@ public class Pembayaran extends Nasabah {
         panel.add(bpjsKesehatan);
         frame.setVisible(true);
     }
+
 }
