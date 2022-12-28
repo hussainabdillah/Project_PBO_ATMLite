@@ -1,4 +1,8 @@
-package mbank;
+package admin;
+
+
+import mbank.Login;
+import mbank.Nasabah;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +56,7 @@ public class TarikSaldo extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new Bank();
+                new admin.Bank();
             }
         });
         panel.add(backButton);
@@ -115,21 +119,21 @@ public class TarikSaldo extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double nominal = Double.parseDouble(nominalTextField.getText());
-                if (nominal > saldonasabah){
+                if (nominal > saldoadmin){
                     JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
                 }
                 else {
-                    saldonasabah -= nominal;
+                    saldoadmin -= nominal;
                     int value = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin melakukan penarikan sebesar Rp. " +
                             df.format(nominal) + " ?", "Konfirmasi Penarikan", JOptionPane.YES_NO_OPTION);
                     if (value == JOptionPane.YES_OPTION){
                         JOptionPane.showMessageDialog(null, "Anda telah berhasil menarik saldo sebesar Rp. " +
                                 df.format(nominal) + " melalui " + comboBox.getSelectedItem() + " Saldo anda saat ini tersisa Rp. " +
-                                df.format(saldonasabah));
+                                df.format(saldoadmin));
                     }
                     else if (value == JOptionPane.NO_OPTION){
                         JOptionPane.showMessageDialog(null, "Penarikan Saldo dibatalkan");
-                        saldonasabah += nominal;
+                        saldoadmin += nominal;
                     }
                 }
                 }

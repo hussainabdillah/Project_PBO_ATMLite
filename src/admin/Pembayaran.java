@@ -1,4 +1,8 @@
-package mbank;
+package admin;
+
+
+import mbank.Login;
+import mbank.Nasabah;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +56,7 @@ public class Pembayaran extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new Bank();
+                new admin.Bank();
             }
         });
         panel.add(backButton);

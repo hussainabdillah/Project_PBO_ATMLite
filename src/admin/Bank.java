@@ -1,4 +1,6 @@
-package mbank;
+package admin;
+
+import mbank.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +18,8 @@ public class Bank extends Nasabah {
 
     public Bank() {
         Nasabah nasabah = new Nasabah();
-        nasabah.setNama("Hussain Abdilah T.K");
-        nasabah.setNoRekening("835906355");
+        nasabah.setNama("Admin");
+        nasabah.setNoRekening("837107256");
 
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
@@ -63,19 +65,19 @@ public class Bank extends Nasabah {
         norek.setForeground(new Color(0xEC5E2C));
         panel.add(norek);
 
-        JLabel saldo = new JLabel("Rp. " + String.valueOf(df.format(saldonasabah)));
+        JLabel saldo = new JLabel("Rp. " + String.valueOf(df.format(saldoadmin)));
         saldo.setBounds(320, 50, 250, 50);
         saldo.setFont(new Font("Inter", Font.BOLD,  20 ));
         saldo.setForeground(new Color(0x000000));
         panel.add(saldo);
 
-        JButton bungaButton = new JButton("BUNGA");
-        bungaButton.setBounds(370, 20, 85, 30);
-        bungaButton.setBackground(new Color(0xEC5E2C));
-        bungaButton.setForeground(new Color(0xFFFFFF));
-        bungaButton.setBorder(BorderFactory.createLineBorder(new Color(0xEC5E2C)));
-        bungaButton.setFont(new Font("Inter", Font.BOLD, 10));
-        bungaButton.addActionListener(new ActionListener() {
+        JButton backButton = new JButton("BUNGA");
+        backButton.setBounds(370, 20, 85, 30);
+        backButton.setBackground(new Color(0xEC5E2C));
+        backButton.setForeground(new Color(0xFFFFFF));
+        backButton.setBorder(BorderFactory.createLineBorder(new Color(0xEC5E2C)));
+        backButton.setFont(new Font("Inter", Font.BOLD, 10));
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Bunga bunga = new Bunga();
@@ -94,7 +96,7 @@ public class Bank extends Nasabah {
                         bungaPasar.rasioBunga() + "%\n" , "Informasi Bunga", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        panel.add(bungaButton);
+        panel.add(backButton);
 
 
         JButton cekSaldo = new JButton("CEK SALDO");
@@ -107,7 +109,7 @@ public class Bank extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Saldo anda sebesar Rp. " +
-                        String.valueOf(df.format(saldonasabah)));
+                        String.valueOf(df.format(saldoadmin)));
             }
         });
         panel.add(cekSaldo);

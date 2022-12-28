@@ -1,4 +1,6 @@
-package mbank;
+package admin;
+
+import mbank.Nasabah;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +23,7 @@ public class Login implements ActionListener {
         nasabah.setUsername("hussainabdillah");
         nasabah.setPassword("070707");
 
-        //this account only for admin to check saldotujuan from other account
+        //this account only for admin to check saldo using transfer from the other account
         nasabah1.setUsername("admin");
         nasabah1.setPassword("admin");
 
@@ -96,12 +98,12 @@ public class Login implements ActionListener {
                 if (textField.getText().equals(nasabah.getUsername()) && passwordField.getText().equals(nasabah.getPassword())){
                     datasalah.setVisible(false);
                     frame.dispose();
-                    new Bank();
+                    new mbank.Bank();
                 }
                 else if (textField.getText().equals(nasabah1.getUsername()) && passwordField.getText().equals(nasabah1.getPassword())){
                     datasalah.setVisible(false);
                     frame.dispose();
-                    new admin.Bank();
+                    new Bank();
                 }
                 else {
                     datasalah.setVisible(true);

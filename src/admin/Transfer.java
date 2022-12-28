@@ -1,4 +1,8 @@
-package mbank;
+package admin;
+
+
+import mbank.Login;
+import mbank.Nasabah;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +52,7 @@ public class Transfer extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new Bank();
+                new admin.Bank();
             }
         });
         panel.add(backButton);
@@ -124,7 +128,7 @@ public class Transfer extends Nasabah {
             public void actionPerformed(ActionEvent e){
                 double nominal = Double.parseDouble(nominalField.getText());
                 String noRekTujuan = noRekTujuanField.getText();
-                if (nominal > saldonasabah){
+                if (nominal > saldoadmin){
                     JOptionPane.showMessageDialog(null, "Saldo anda tidak mencukupi");
                 }
                 else {
@@ -134,11 +138,11 @@ public class Transfer extends Nasabah {
                                     " apakah sudah sesuai?\n" +
                             "Klik YES untuk KONFIRMASI dan NO untuk MEMBATALKAN", "Konfirmasi Transfer", JOptionPane.YES_NO_OPTION );
                     if (value == JOptionPane.YES_OPTION){
-                        saldonasabah -= nominal;
-                        saldoadmin += nominal;
+                        saldoadmin -= nominal;
+                        saldonasabah += nominal;
                         JOptionPane.showMessageDialog(null, "Transfer ke rekening "  + noRekTujuan
                                 + " sebesar Rp. " + df.format(nominal) +" telah Berhasil\n"
-                                + "Saldo anda saat ini adalah Rp. " + df.format(saldonasabah));
+                                + "Saldo anda saat ini adalah Rp. " + df.format(saldoadmin));
                     }
                     else if (value == JOptionPane.NO_OPTION){
                         JOptionPane.showMessageDialog(null, "Transfer dibatalkan");

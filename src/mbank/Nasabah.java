@@ -3,6 +3,7 @@ package mbank;
 public class Nasabah {
     private static String nama;
     public static double saldonasabah = 1000000;
+    public static double saldoadmin;
     private static String noRekening;
     private String username;
     private String password;

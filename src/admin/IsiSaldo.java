@@ -1,4 +1,8 @@
-package mbank;
+package admin;
+
+
+import mbank.Login;
+import mbank.Nasabah;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +57,7 @@ public class IsiSaldo extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                new Bank();
+                new admin.Bank();
             }
         });
         panel.add(backButton);
@@ -137,18 +141,18 @@ public class IsiSaldo extends Nasabah {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double nominal = Double.parseDouble(nominalTextField.getText());
-                saldonasabah = saldonasabah + nominal;
+                saldoadmin = saldoadmin + nominal;
                 int value = JOptionPane.showConfirmDialog(null, "Apakah anda ingin mengisi saldo sebesar Rp. " +
                         df.format(nominal) + " melalui " + comboBox2.getSelectedItem() +
                         " ?", "Konfirmasi Pengisian Saldo", JOptionPane.YES_NO_OPTION );
                 if (value == JOptionPane.YES_OPTION) {
                     JOptionPane.showMessageDialog(null, "Pengisian Saldo sebesar Rp. " + df.format(nominal) +
                             " untuk " + comboBox.getSelectedItem() + " melalui " + comboBox2.getSelectedItem() +
-                            " telah berhasil. Saldo anda saat ini adalah Rp. " + df.format(saldonasabah));
+                            " telah berhasil. Saldo anda saat ini adalah Rp. " + df.format(saldoadmin));
                 }
                 else if (value == JOptionPane.NO_OPTION) {
                     JOptionPane.showMessageDialog(null, "Pengisian Saldo dibatalkan.");
-                    saldonasabah -= nominal;
+                    saldoadmin -= nominal;
                 }
             }
         });
