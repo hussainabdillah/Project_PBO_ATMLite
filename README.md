@@ -32,4 +32,5 @@ List any features of this application:
 3. Putri Yogi Noviana
 4. Aprilia Puspita Anggraeni
 
-<p href="">For further information of this project <a href"https://docs.google.com/document/d/1ABED3Ht0nyq48rQQbOvwz74K5DIgW_0JMX-fSJAIsvs/edit?usp=sharing"><i>Access this Documentation</i></a><p>
+For further information of this project [Access this Documentation](https://docs.google.com/document/d/1ABED3Ht0nyq48rQQbOvwz74K5DIgW_0JMX-fSJAIsvs/edit?usp=sharing)
+
